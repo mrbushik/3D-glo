@@ -1,6 +1,3 @@
-import {
-    animate
-} from "./helper";
 const menu = () => {
     const menuBtn = document.querySelector('.menu');
     const menu = document.querySelector('menu');
@@ -10,31 +7,28 @@ const menu = () => {
     menu.style.opacity = 0;
 
     const handleMenu = () => {
-        //убираем анимацию если разрешение меньше 768 px
-        if (document.documentElement.offsetWidth > 768) {
-            menu.classList.toggle('active-menu');
-        }
-
-
+        menu.classList.toggle('active-menu');
     };
-    // как я понял что делегирование вешать  только на одну кнопку меню это плохо
-    // но по заданию сказано сделать делегированние поэтору реализовал это 
+
     header.addEventListener('click', (e) => {
         if (e.target.closest('.menu')) {
             handleMenu();
+            menu.style.opacity = 1;
         }
     });
 
-    //обычний обработчик для открытия меню
-    // menuBtn.addEventListener('click', handleMenu);
 
     menu.addEventListener('click', (e) => {
         if (e.target.classList == 'close-btn') {
             e.preventDefault();
             handleMenu();
+            menu.style.opacity = 0;
+
         }
         menuItems.forEach((menuItem) => {
             if (e.target === menuItem) {
+
+
                 handleMenu();
             } else if (e.target.classList === 'close-btn') {
                 handleMenu();
@@ -43,14 +37,6 @@ const menu = () => {
 
     });
 
-    animate({
-        duration: 10000,
-        timing(timeFraction) {
-            return timeFraction;
-        },
-        draw(progress) {
-            menu.style.opacity = progress;
-        }
-    });
+
 };
 export default menu;

@@ -32,7 +32,7 @@ const calc = (price = 100) => {
         }
         if (calcSquare.value && calcSquare.value) {
             totalValue = price * calcSquareValue * calcTypeValue * calcCountValue * calcDayValue;
-
+            totalValue = Math.round(totalValue)
         } else {
             totalValue = 0;
         }

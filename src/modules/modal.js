@@ -10,19 +10,27 @@ const modal = () => {
 
 
     buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            animate({
-                duration: 500,
-                timing(x, timeFraction) {
-                    return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x);
-                },
-                draw(progress) {
-                    modal.style.display = 'block';
-                    content.style.top = progress * 25 + '%';
-                }
-            });
+        if (document.documentElement.offsetWidth > 768) {
+            btn.addEventListener('click', () => {
+                animate({
+                    duration: 500,
+                    timing(x, timeFraction) {
+                        return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x);
+                    },
+                    draw(progress) {
+                        modal.style.display = 'block';
+                        content.style.top = progress * 25 + '%';
+                    }
+                });
 
-        });
+            });
+        } else if (document.documentElement.offsetWidth < 768) {
+            btn.addEventListener('click', () => {
+                modal.style.display = 'block';
+            })
+
+        }
+
     });
 
     modal.addEventListener('click', (e) => {

@@ -50,7 +50,6 @@
 
      const submitForm = () => {
 
-         //  console.log(nameInput.value);
          statusBlock.textContent = loadText;
          form.append(statusBlock);
          const formDate = new FormData(form);
@@ -77,7 +76,6 @@
          if (validate(formElements)) {
              sendData(formBody)
                  .then(data => {
-                     console.log(data);
                      statusBlock.textContent = successText;
                      setTimeout(deleteStatusBlock, 3000);
                      formElements.forEach(input => {
